@@ -27,25 +27,21 @@ namespace ServeBooks.Controllers
         {
            try 
            {
-              if (String.IsNullOrEmpty(Usuario.Correo) || String.IsNullOrEmpty(Usuario.Contraseña))
-              {
-                 return BadRequest("Debe ingresar su correo y contraseña");
-              }
-
                 var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Correo == Usuario.Correo && u.Contraseña == Usuario.Contraseña);
                 if (usuario == null)
                 {
                  return Unauthorized("Correo o contraseña incorrectos");
                 }
+              if (String.IsNullOrEmpty(Usuario.Correo) || String.IsNullOrEmpty(Usuario.Contraseña))
+              {
+                 return BadRequest("Debe ingresar su correo y contraseña");
+              }
+                _logger.LogInformation($"Usuario encontrado: {Usuario.Correo}");
+                _logger.LogInformation($"Contraseña encontrada: {Usuario.Contraseña}");
 
-            _logger.LogInformation($"Usuario encontrado: {Usuario.Correo}");
-            _logger.LogInformation($"Contraseña encontrada: {Usuario.Contraseña}");
-
-            var token =_jwtRepository.GenerarToken(Usuario);
-            _logger.LogInformation($"Token encontrado: {token}");
-                return Ok(new{ Token = token});
-            
-            
+                var token =_jwtRepository.GenerarToken(Usuario);
+                _logger.LogInformation($"Token encontrado: {token}");
+                    return Ok(new{ Token = token}); 
            }
            catch (Exception ex)
            {

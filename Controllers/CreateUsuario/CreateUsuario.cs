@@ -30,7 +30,7 @@ namespace ServeBooks.Controllers
                 Nombre = registroDto.Nombre,
                 Apellido = registroDto.Apellido,
                 DocumentoId = registroDto.DocumentoId,
-                NumeroDeDocumento = registroDto.NumeroDeDocumento,
+                Numero_de_documento = registroDto.NumeroDeDocumento,
                 Direccion = registroDto.Direccion,
                 Telefono = registroDto.Telefono,
                 Correo = registroDto.Correo,
