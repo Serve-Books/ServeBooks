@@ -14,5 +14,7 @@ namespace ServeBooks.Services.Correos
 
 		public string CorreoAutorizcionPrestamo(string CorreoUsuario, string NombreLibro);
 
+		public string CorreoRecordatio(string CorreoUsuario, string FechaLimite, string NombreLibro);
+	
 	}
 }
