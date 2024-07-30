@@ -9,6 +9,6 @@ namespace ServeBooks.Services.Prestamos
 {
     public interface IPrestamosRepository
     {
-        void CrearPrestamo(Prestamo prestamo);
+        Task<Prestamo> CrearPrestamo(Prestamo Prestamos); //CREATE
     }
 }

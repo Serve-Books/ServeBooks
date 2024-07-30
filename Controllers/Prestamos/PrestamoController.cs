@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ServeBooks.Services.Prestamos;
@@ -17,12 +21,12 @@ namespace ServeBooks.Controllers.Prestamos
         
         [HttpPost]
         [Route("Prestamo/Creado")]
-        public IActionResult CrearPrestamo(Prestamo prestamo)
+        public IActionResult CrearPrestamo([FromBody]Prestamo Prestamos)
         {
             try
             {
-                _prestamos.CrearPrestamo(prestamo);
-                return Ok(prestamo);
+                _prestamos.CrearPrestamo(Prestamos);
+                return Ok("Funciona");
             }
             catch (System.Exception)
             {
