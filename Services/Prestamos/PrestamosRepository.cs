@@ -17,7 +17,6 @@ namespace ServeBooks.Services.Prestamos
             _context = context;
         }
 
-
         public IEnumerable<Prestamo> MostrarPrestamos()
         {
             return _context.Prestamos;
@@ -27,7 +26,6 @@ namespace ServeBooks.Services.Prestamos
         {
             return _context.Prestamos.Find(id);
         }
-
 
         public async Task<Prestamo> CrearPrestamo(Prestamo prestamo)
         {
