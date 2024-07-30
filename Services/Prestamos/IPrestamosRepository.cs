@@ -9,6 +9,8 @@ namespace ServeBooks.Services.Prestamos
 {
     public interface IPrestamosRepository
     {
+        IEnumerable<Prestamo> MostrarPrestamos(); //LIST
+        Prestamo MostrarPrestamo(int id); // LIST ID
         Task<Prestamo> CrearPrestamo(Prestamo Prestamos); //CREATE
     }
 }

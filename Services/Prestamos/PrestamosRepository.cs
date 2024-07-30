@@ -17,6 +17,18 @@ namespace ServeBooks.Services.Prestamos
             _context = context;
         }
 
+
+        public IEnumerable<Prestamo> MostrarPrestamos()
+        {
+            return _context.Prestamos;
+        }
+
+        public Prestamo MostrarPrestamo(int id)
+        {
+            return _context.Prestamos.Find(id);
+        }
+
+
         public async Task<Prestamo> CrearPrestamo(Prestamo prestamo)
         {
             _context.Prestamos.Add(prestamo);
