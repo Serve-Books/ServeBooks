@@ -1,7 +1,5 @@
 using ServeBooks.Data;
 using ServeBooks.Models;
-using System;
-using System.Threading.Tasks;
 using BCrypt.Net;
 
 namespace ServeBooks.Services

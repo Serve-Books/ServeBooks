@@ -14,7 +14,7 @@ namespace ServeBooks.DTOs
         public int DocumentoId { get; set; }
 
         [Required]
-        public string NumeroDeDocumento { get; set; }
+        public string Numero_de_documento { get; set; }
 
         [Required]
         public string Direccion { get; set; }

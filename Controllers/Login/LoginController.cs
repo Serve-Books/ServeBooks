@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ServeBooks.Models;
 using Microsoft.Extensions.Logging;
+using ServeBooks.Services.Correos;
 
 
 namespace ServeBooks.Controllers
@@ -14,12 +15,14 @@ namespace ServeBooks.Controllers
     public class LoginController : ControllerBase
     {
         private readonly DataContext _context;
+        private readonly ICorreoRepository _correoRepository;
         private readonly IJwtRepository _jwtRepository;
         private readonly ILogger<LoginController> _logger;
-        public LoginController(DataContext context, IJwtRepository jwtRepository, ILogger<LoginController> logger)
+        public LoginController(DataContext context, IJwtRepository jwtRepository, ILogger<LoginController> logger, ICorreoRepository correoRepository)
         {
             _context = context;
             _jwtRepository = jwtRepository;
+            _correoRepository = correoRepository;
             _logger = logger;
         }
         [HttpPost("Login")]
@@ -41,6 +44,11 @@ namespace ServeBooks.Controllers
 
                 var token =_jwtRepository.GenerarToken(Usuario);
                 _logger.LogInformation($"Token encontrado: {token}");
+
+                var remoteIpAddress = HttpContext.Connection.RemoteIpAddress;
+                
+                _correoRepository.CorreoInicio(Usuario.Correo,remoteIpAddress.ToString());
+                                
                     return Ok(new{ Token = token}); 
            }
            catch (Exception ex)

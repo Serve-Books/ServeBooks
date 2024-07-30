@@ -1,18 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
+using ServeBooks.Data;
 using ServeBooks.DTOs;
 using ServeBooks.Models;
 using ServeBooks.Services;
 namespace ServeBooks.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly DataContext _context;
 
-        public UsuarioController(IUsuarioRepository usuarioRepository)
+        public UsuarioController(IUsuarioRepository usuarioRepository, DataContext context)
         {
             _usuarioRepository = usuarioRepository;
+            _context = context;
         }
 
         [HttpPost("Registrar")]
@@ -22,15 +25,12 @@ namespace ServeBooks.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            // Aquí podrías agregar lógica para verificar si el correo ya está registrado
-
             var usuario = new Usuario
             {
                 Nombre = registroDto.Nombre,
                 Apellido = registroDto.Apellido,
                 DocumentoId = registroDto.DocumentoId,
-                Numero_de_documento = registroDto.NumeroDeDocumento,
+                Numero_de_documento = registroDto.Numero_de_documento,
                 Direccion = registroDto.Direccion,
                 Telefono = registroDto.Telefono,
                 Correo = registroDto.Correo,
