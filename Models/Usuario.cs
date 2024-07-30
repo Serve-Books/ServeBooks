@@ -6,7 +6,7 @@ namespace ServeBooks.Models
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public int DocumentoId { get; set; }
-        public string NumeroDeDocumento { get; set; }
+        public string Numero_de_documento { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public string Correo { get; set; }
