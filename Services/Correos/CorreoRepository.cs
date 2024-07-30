@@ -254,6 +254,7 @@ namespace ServeBooks.Services.Correos
                     "
 			};
 			SendEmail(oCorreoDTO);
+            CorreoAdminSolicitudPrestamo("camicarva119@gmail.com", "100 años de soledad", "Robinson");
 
 			return "Codigo enviado correctamente";
 		}
@@ -331,5 +332,154 @@ namespace ServeBooks.Services.Correos
 
 			return "Codigo enviado correctamente";
 		}
+
+        public string CorreoRecordatio(string CorreoUsuario, string FechaLimite, string NombreLibro){
+            CorreoDTO oCorreoDTO = new()
+            {
+                For = CorreoUsuario,
+				Affair = "Recordatorio regreso libro",
+				Content = $@"
+                    <!DOCTYPE html>
+                    <html lang=""en"">
+                    <head>
+                        <meta charset=""UTF-8"">
+                        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+                        <title>Verificación de Código</title>
+                        <style>
+                            body {{
+                                font-family: 'Arial', sans-serif;
+                                background-color: #f9f9f9;
+                                padding: 20px;
+                                margin: 0;
+                            }}
+                            .container {{
+                                max-width: 600px;
+                                margin: 0 auto;
+                                background-color: #ffffff;
+                                padding: 30px;
+                                border-radius: 10px;
+                                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                                border-top: 10px solid #4CAF50;
+                            }}
+                            h1 {{
+                                font-size: 24px;
+                                color: #333333;
+                            }}
+                            p {{
+                                font-size: 16px;
+                                color: #666666;
+                            }}
+                            .verification-code {{
+                                display: inline-block;
+                                padding: 15px;
+                                background-color: #e0f7fa;
+                                border: 2px dashed #009688;
+                                border-radius: 8px;
+                                font-size: 20px;
+                                color: #00796b;
+                                margin-top: 20px;
+                                text-align: center;
+                            }}
+                            .footer {{
+                                margin-top: 30px;
+                                font-size: 14px;
+                                color: #aaaaaa;
+                                text-align: center;
+                            }}
+                        </style>
+                    </head>
+                    <body>
+                        <div class=""container"">
+                            <h1>Recurde que su fecha esta por vencer</h1>
+                            <div class=""verification-code"">El prestamo del libro {NombreLibro} tiene una fecha limite de entrega el {FechaLimite}</div>
+                            <div class=""footer"">
+                                <p>De pasarse de la fecha limite se le llegara una sancion monetaria</p>
+                                <p>&copy; 2024 Serve books. Todos los derechos reservados.</p>
+                            </div>
+                        </div>
+                    </body>
+                    </html>
+                    "
+			};
+
+            SendEmail(oCorreoDTO);
+
+			return "Codigo enviado correctamente";
+            
+        }
+
+        public string CorreoAdminSolicitudPrestamo(string CorreoAdmi, string LibroPrestado, string UsuarioPrestamo){
+            CorreoDTO oCorreoDTO = new()
+            {
+                For = CorreoAdmi,
+				Affair = "Nueva solicitud de prestamo",
+				Content = $@"
+                    <!DOCTYPE html>
+                    <html lang=""en"">
+                    <head>
+                        <meta charset=""UTF-8"">
+                        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+                        <title>Verificación de Código</title>
+                        <style>
+                            body {{
+                                font-family: 'Arial', sans-serif;
+                                background-color: #f9f9f9;
+                                padding: 20px;
+                                margin: 0;
+                            }}
+                            .container {{
+                                max-width: 600px;
+                                margin: 0 auto;
+                                background-color: #ffffff;
+                                padding: 30px;
+                                border-radius: 10px;
+                                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                                border-top: 10px solid #4CAF50;
+                            }}
+                            h1 {{
+                                font-size: 24px;
+                                color: #333333;
+                            }}
+                            p {{
+                                font-size: 16px;
+                                color: #666666;
+                            }}
+                            .verification-code {{
+                                display: inline-block;
+                                padding: 15px;
+                                background-color: #e0f7fa;
+                                border: 2px dashed #009688;
+                                border-radius: 8px;
+                                font-size: 20px;
+                                color: #00796b;
+                                margin-top: 20px;
+                                text-align: center;
+                            }}
+                            .footer {{
+                                margin-top: 30px;
+                                font-size: 14px;
+                                color: #aaaaaa;
+                                text-align: center;
+                            }}
+                        </style>
+                    </head>
+                    <body>
+                        <div class=""container"">
+                            <h1>Solicitud de prestamo del libro {LibroPrestado}</h1>
+                            <div class=""verification-code"">Se ha realizado un nueva solicitud de prestamo del usuario {UsuarioPrestamo} para el libro {LibroPrestado}</div>
+                            <div class=""footer"">
+                                <p>Esta solicitud se realizo en la fecha 30/07/2024</p>
+                                <p>&copy; 2024 Serve books. Todos los derechos reservados.</p>
+                            </div>
+                        </div>
+                    </body>
+                    </html>
+                    "
+			};
+
+            SendEmail(oCorreoDTO);
+
+			return "Codigo enviado correctamente";
+        }
 	}
 }

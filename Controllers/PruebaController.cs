@@ -48,6 +48,12 @@ namespace ServeBooks.App.Controllers
 			return Ok(res);
 		}
 
+		[HttpGet("Recordatorio")]
+		public IActionResult Recordatorio(){
+			var res = _correo.CorreoRecordatio("camicarva119@gmail.com","2020-12-30" ,"100 años de soledad");
+			return Ok(res);
+		}
+
 
 	}
 }
