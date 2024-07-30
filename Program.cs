@@ -8,6 +8,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ServeBooks.Services;
 using Libreria.Sevices;
+using Microsoft.Extensions.Logging;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +45,10 @@ builder.Services.AddScoped<IPrestamosRepository, PrestamosRepository>();
 builder.Services.AddScoped<ICorreoRepository, CorreoRepository>();
 builder.Services.AddScoped<IJwtRepository, JwtRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+//Logger
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
 
 var app = builder.Build();
 

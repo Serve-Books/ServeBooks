@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using ServeBooks.DTOs;
 using ServeBooks.Models;
 using ServeBooks.Services;
-using System.Threading.Tasks;
-
 namespace ServeBooks.Controllers
 {
     [ApiController]

@@ -1,3 +1,4 @@
+using ServeBooks.Models;
 namespace ServeBooks.DTOs
 {
     public class UsuarioDto 

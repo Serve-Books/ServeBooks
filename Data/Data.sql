@@ -12,6 +12,7 @@ CREATE TABLE Documento (
     Id INT PRIMARY KEY,
     Nombre VARCHAR(255) NOT NULL
 );
+select * from Documento;
 
 CREATE TABLE Usuarios (
     Id INT PRIMARY KEY,
@@ -24,6 +25,17 @@ CREATE TABLE Usuarios (
     Correo VARCHAR(255) NOT NULL,
     FOREIGN KEY (DocumentoId) REFERENCES Documento(Id)
 );
+INSERT INTO Usuarios(
+    Id,
+    Nombre,
+    Apellido,
+    DocumentoId,
+    Numero_de_documento,
+    Direccion,
+    Telefono,
+    Correo
+) VALUES(3,"Melissa","Martinez",1,"00000","34345454","melisa@gmail.com");
+select * from Usuarios;
 
 CREATE TABLE Libro (
     Id INT PRIMARY KEY,
